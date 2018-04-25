@@ -37,6 +37,7 @@ Sys.time()-t1
 
 listDecrease_copy = listDecrease
 
+#extragere in 2 coloane pret si scor
 l1 = list()
 l2 = list()
 for(i in 1:length(listDecrease)){
@@ -59,13 +60,16 @@ for(i in 1:length(listDecrease)){
   }
 }
 
-#write lista, listDecrease
+#write lista, listDecrease, l1, l2
 saveRDS(lista, "lista")
 saveRDS(listDecrease, "listDecrease")
-#write l1, l2
 saveRDS(l1, "l1")
 saveRDS(l2, "l2")
-readRDS("l1")
+#read
+l1 = readRDS("l1")
+l2 = readRDS("l2")
+lista = readRDS("lista")
+listDecrease = readRDS("listDecrease")
 
 df = need_matching
 df = df[,c(1,2)]
@@ -103,8 +107,30 @@ for(i in 1:120){
   }
   df$scor_aug_sept[i] = paste(df$scor_aug_sept[i], "</select>")
 }
+
+# Percent : crestere, scadere pret
+
+percent = list()
+for (i in 1:nrow(df)){
+  l2[[i]] = as.numeric(l2[[i]])
+  percent[[i]] = seq(4)
+  for(j in 1:length(l2[[i]])){
+    percent[[i]][j] = abs((df$pret_aug[i] - l2[[i]][j])/df$pret_aug[i])
+    percent[[i]][j] = as.numeric(format(round(percent[[i]][j],2),2))
+  }
+}
+
+for(i in 1:nrow(df)){
+  percent[[i]] = as.character(percent[[i]])
+}
+df$procent[1:120] = "<select class=\"dropdown-procent\">"
+df$procent = as.character(df$procent)
+for(i in 1:120){
+  for(j in 1:4){
+    df$procent[i] = paste0(df$procent[i], "<option value=\"", j, "\">", percent[[i]][j], "</option>")
+  }
+  df$procent[i] = paste(df$procent[i], "</select>")
+}
+
 write.csv(df, "dfShiny.csv")
 
-df$prod_sept = as.factor(df$prod_sept)
-df$pret_sept = as.factor(df$pret_sept)
-df$scor_aug_sept = as.factor(df$scor_aug_sept)

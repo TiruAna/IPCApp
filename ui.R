@@ -9,9 +9,6 @@ ui = fluidPage(
                  br(),
                  br(),
                  actionButton("saveTable", "Save Table")),
-    #br(),
-    #br(),
-    #actionButton("markPrice", "Mark Price")),  
     mainPanel(dataTableOutput("table1"), tags$head(tags$script(src="test.js"))) 
   )
 )
