@@ -7,5 +7,6 @@ $(document).ready(function() {
 		tablerow = $(currentDropdownProdus).parents('tr')[0];
 		$(tablerow).find('select.dropdown-pret').val(selectedDropdownIndex);
 		$(tablerow).find('select.dropdown-scor').val(selectedDropdownIndex);
+		$(tablerow).find('select.dropdown-procent').val(selectedDropdownIndex);
 	});
 })
