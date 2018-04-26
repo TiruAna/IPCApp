@@ -1,7 +1,7 @@
 library(shiny)
 library(DT)
 library(dplyr)
-#df = read.csv("dfShiny.csv")
+df = read.csv("dfShiny.csv")
 
 server = function(input, output){ 
   values = reactiveValues(dfWorking = df) 
@@ -13,14 +13,13 @@ server = function(input, output){
                }
   )
   
- 
-  # output$table1 = renderDataTable({datatable(values$dfWorking) %>% formatStyle(
-  # 'pret_aug',
-  # target = 'row',
-  # backgroundColor = styleInterval(c(0.20), c('white', 'yellow'))
-  # ) }) 
-  
-  output$table1 = renderDataTable({ values$dfWorking }, escape=FALSE)
+  output$table1 = renderDataTable({datatable(values$dfWorking, escape = FALSE) %>% formatStyle(
+  'percent',
+  target = 'row',
+  backgroundColor = styleInterval(c(0.20), c('white', 'gray'))
+  ) })
+
+  # output$table1 = renderDataTable({ values$dfWorking }, escape=FALSE)
   
   # output$table1 = renderDataTable({DT::datatable(values$dfWorking, 
   #                 options = list(rowCallback = JS('

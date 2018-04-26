@@ -3,7 +3,7 @@ library(DT)
 library(dplyr)
 
 ui = fluidPage(
-  titlePanel("Delete rows for fuzzywuzzy"),
+  titlePanel("IPCApp"),
   sidebarLayout( 
     sidebarPanel(actionButton("deleteRows", "Delete Rows"),
                  br(),
