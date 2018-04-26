@@ -21,18 +21,4 @@ server = function(input, output){
 
   # output$table1 = renderDataTable({ values$dfWorking }, escape=FALSE)
   
-  # output$table1 = renderDataTable({DT::datatable(values$dfWorking, 
-  #                 options = list(rowCallback = JS('
-  #                 function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-  #                                     // Bold and green cells for conditions
-  #                                     if (parseFloat(aData[3]) >= 2)
-  #                                     $("td:eq(3)", nRow).css("font-weight", "bold");
-  #                                     if (parseFloat(aData[3]) >= 1)
-  #                                     $("td:eq(3)", nRow).css("background-color", "#9BF59B");
-  #                                      }')
-  #               )
-  #           )
-  #        })
-
-  
 }
