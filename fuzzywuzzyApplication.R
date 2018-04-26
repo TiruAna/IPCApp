@@ -120,6 +120,8 @@ for (i in 1:nrow(df)){
   }
 }
 
+saveRDS(percent, "percent")
+
 for(i in 1:nrow(df)){
   percent[[i]] = as.character(percent[[i]])
 }
@@ -130,6 +132,10 @@ for(i in 1:120){
     df$procent[i] = paste0(df$procent[i], "<option value=\"", j, "\">", percent[[i]][j], "</option>")
   }
   df$procent[i] = paste(df$procent[i], "</select>")
+}
+
+for(i in 1:nrow(df)){
+  df$percent[i] = percent[[i]][1]
 }
 
 write.csv(df, "dfShiny.csv")
